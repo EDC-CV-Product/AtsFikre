@@ -45,9 +45,9 @@ class UserApiView(APIView):
         serializer_obj = UserSerializer(data=request.data)
         try:
             if serializer_obj.is_valid():
-                #print('Is ABOUT TO SAVE')
+                print('Is ABOUT TO SAVE')
                 serializer_obj.data['password'] = make_password(serializer_obj.data['password'])
-                #print('PASSS', serializer_obj.data['password'])
+                print('PASSS', serializer_obj.data['password'])
 
                 serializer_obj.save()
                 return Response(serializer_obj.data, status.HTTP_201_CREATED)
