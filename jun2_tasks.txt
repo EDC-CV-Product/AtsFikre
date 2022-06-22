@@ -1,0 +1,30 @@
+@Hello team, these end points are required from the backend (in priority order).
+1. getApplicationByUserId parameter user_id return application object=(GET) use user id for get
+from application table all application detail data searching parameter userid
+
+2. login operation response user full information if exists(POST)
+login operation accept email and password cheking and testing
+
+3. getApplicationDocumentByUserId parameter userId, return application_document(GET)
+
+from application document by using userid return application document
+
+4. checkUserExistence(email) parameter email, return user or null(Email ) POST check Existance on user Registartion
+5. SearchJobsByPosition parameter job_position_id return list of jobs: Search Operations(Second to respond) contains search
+6. GetCandidateEvaluationList parameter job_id return candidateEvaluation object (List)
+
+
+
+
+During Registration :check The avliability or existance of certain User Email:
+
+
+Api view class Method approach
+@api_View Function
+
+
+git stash  undo changes on git
+
+
+
+id

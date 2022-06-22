@@ -1,0 +1,14 @@
+
+Assigment
+end point api test: postman testing
+
+either api  folder or database
+
+file end point 
+
+from fiker front end to folder or to database
+
+
+python manage.py makemigrations
+
+python manage.py migrate
