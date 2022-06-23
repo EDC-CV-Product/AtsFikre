@@ -42,15 +42,16 @@ class UserApiView(APIView):
 
 # to Create Form and POST data to Table
     def post(self, request):
+        request.data['password'] = make_password(request.data['password'])
+        print(request.data['password'])
         serializer_obj = UserSerializer(data=request.data)
         try:
             if serializer_obj.is_valid():
-                print('Is ABOUT TO SAVE')
-                serializer_obj.data['password'] = make_password(serializer_obj.data['password'])
-                print('PASSS', serializer_obj.data['password'])
-
                 serializer_obj.save()
                 return Response(serializer_obj.data, status.HTTP_201_CREATED)
+        except Exception as e:
+            print(e)
+            return Response(serializer_obj.errors, status.HTTP_404_NOT_FOUND)
         except Exception as e:
             print(e)
             return Response(serializer_obj.errors, status.HTTP_404_NOT_FOUND)
