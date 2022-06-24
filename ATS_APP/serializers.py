@@ -267,7 +267,7 @@ class ApplicatDocumentSerializer(serializers.ModelSerializer):
     ## user = UserSerializer(many=True, read_only=True)
     class Meta:
         model = Applicant_Document
-        fields='__all__'
+        fields = ('applicant_document_id', 'name', 'url', 'document', 'user', 'last_updated')
 
 
 # candidate_Evaluation Starts Here

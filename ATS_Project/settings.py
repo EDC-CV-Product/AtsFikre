@@ -58,6 +58,11 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+    # 'DEFAULT_PARSER_CLASSES': (
+    #     'rest_framework.parsers.FormParser',
+    #     'rest_framework.parsers.MultiPartParser'
+    #  ),
+
 }
 
 
@@ -97,7 +102,7 @@ SIMPLE_JWT = {
     'JTI_CLAIM': 'jti',
 
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
-    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=1),
+    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=20),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 

@@ -19,6 +19,8 @@ from .resume_scan import *
 from .utils import *
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny
+from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
+from rest_framework.decorators import parser_classes
 # custom pagination class
 class CustomPagination(PageNumberPagination):
     page_size = 5
@@ -772,26 +774,29 @@ def get_application_by_user_id(request):
 
 class Applicant_DocumentApiView(APIView):
     serializer_class=ApplicatDocumentSerializer
-    permission_classes = [AllowAny]
+    #parser_classes = [MultiPartParser, JSONParser]
     def get(self,request):
         Applicant_Documents=Applicant_Document.objects.all().values()
         return Response({"Message":"Success","data":Applicant_Documents})
 
 # to Create Form and POST data to Table
-
-    def post(self, request):
-        serializer_obj = ApplicatDocumentSerializer(data=request.data)
+    def post(self, req):
+        print('before validation')
         try:
+            serializer_obj = ApplicatDocumentSerializer(data=req.data)
             if serializer_obj.is_valid():
-                previous_docs=Applicant_Document.objects.filter(user=request.data['user'])
-                print(previous_docs)
-                if previous_docs is not None:
+                previous_docs=Applicant_Document.objects.filter(user=req.data['user'])
+                print(len(previous_docs))
+                if len(previous_docs) > 0:
                     previous_docs.delete()
                 serializer_obj.save()
                 return Response(serializer_obj.data, status.HTTP_201_CREATED)
+            else:
+                print('after invalid')
+                return Response(req, status.HTTP_404_NOT_FOUND)
         except Exception as e:
-            print(e)
-            return Response(serializer_obj.errors, status.HTTP_404_NOT_FOUND)
+            print('some exception', e)
+            return Response({'error': 'unknown error'}, status.HTTP_404_NOT_FOUND)
     #Delete Application Document Using User ID
     """def delete(self, request):
             queryset=Applicant_Document.objects.filter(applicant_document_id=request.data['user_id'])

@@ -209,7 +209,7 @@ class Applicant_Document(models.Model):
     name=models.CharField(max_length=200)
     document= models.FileField()
     url = models.CharField(max_length=90,null=True)
-    last_updated = models.DateTimeField(max_length=30)
+    last_updated = models.DateTimeField(auto_now=True, max_length=30)
     user  = models.ForeignKey(
         'user',
          on_delete=models.CASCADE,

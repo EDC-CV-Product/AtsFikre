@@ -83,7 +83,7 @@ urlpatterns = [
     path('Applications/get_application_by_user_id',get_application_by_user_id,name="Application Detail Detail by User_ID"),
 
     #get All Applicant Document from DAtabase Table
-    path('Applicant_Documents/',views.Applicant_DocumentApiView.as_view(),name="Applicant(GET)"),
+    path('Applicant_Documents/',views.Applicant_DocumentApiView.as_view(),name="Applicant Document(GET)"),
     path('Applicant_Documents/<int:Applicant_Documents>',views.Applicant_DocumentdetailView.as_view(),name="Applicant(GET)"),
     #get Appliccant Document by using Certaim Parameter
     path('Applicant_Documents/get-by_user_id',usered,name="Applicant Detail View"),
