@@ -155,16 +155,16 @@ DATABASES = {
 }
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'de0ec6nf2cs7gb',
-#         'USER': 'eibfkgkzyhcqvd',
-#         'PASSWORD': 'eb9a37dd4b5a9303300b578373bcb5eae8bde3215179c7c4d558873887b19a56',
-#         'HOST': 'ec2-34-225-159-178.compute-1.amazonaws.com',
-#         'PORT': '5432',
-#           }
-# }
+'''DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'de0ec6nf2cs7gb',
+        'USER': 'eibfkgkzyhcqvd',
+        'PASSWORD': 'eb9a37dd4b5a9303300b578373bcb5eae8bde3215179c7c4d558873887b19a56',
+        'HOST': 'ec2-34-225-159-178.compute-1.amazonaws.com',
+        'PORT': '5432',
+          }
+}'''
 
 
 # Password validation

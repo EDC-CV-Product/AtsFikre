@@ -15,12 +15,13 @@ from ATS_Project import settings
 from django.contrib.auth.hashers import make_password
 
 import os
-from .resume_scan import *
+#from .resume_scan import *
 from .utils import *
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.decorators import parser_classes
+from .rescan import *
 # custom pagination class
 class CustomPagination(PageNumberPagination):
     page_size = 5
@@ -935,6 +936,7 @@ class JobDiscriptiondetailView(APIView):
 @api_view(['GET'])
 def get_applicant_score(request):
     job_id = request.query_params.get('job_id', None)
+    candidate_evaluations = []
     if job_id is not None:
         print('job_id ', job_id)
         job = Job.objects.all().get(job_id=job_id)
@@ -947,8 +949,9 @@ def get_applicant_score(request):
         applications = ApplicationSerializer(applications_querysets, many=True)
         # return Response({'Message': 'Success', 'data': applications.data})
         # loop fore each application
-        candidate_evaluations = []
+
         print('job_file', job_file)
+        print('total applications found: ', len(applications.data))
         for application in applications.data:
             try:
                 user_id = application['user']
@@ -973,9 +976,10 @@ def get_applicant_score(request):
                     try:
                         resume_s = extract_text(user_file_path)
                         jobdesc = extract_text(job_file_path)
+
                         score_r = score(resume_s, jobdesc)
-                        print('resume_s', resume_s)
-                        print('jobdesc ', jobdesc)
+                        # print('resume_s', resume_s)
+                        # print('jobdesc ', jobdesc)
                         print('my score: ', score_r)
                     except Exception as e:
                         print(e)
@@ -1001,18 +1005,22 @@ def get_applicant_score(request):
                     try:
                         candidate.save()
                         print('Saving success')
+                        continue
                     except Exception as e:
                         print(e)
                         continue
                 else:
                     continue
                     # print(candidate_ser.errors)
-                    # return Response({'jobfile': job_file_path, 'userfile': user_file_path})
+                    # return ResponseResponse({'jobfile': job_file_path, 'userfile': user_file_path})
             except Exception as e:
                 print('score error')
                 print(e)
                 continue
-            return Response({'Message': 'Success',
-                             'data': candidate_EvaluationSerializer(candidate_evaluations, many=True).data})
+
     else:
         return Response({'Error': 'No job id is provided'})
+
+    return Response(
+        data={'Message': 'Success', 'data': candidate_EvaluationSerializer(candidate_evaluations, many=True).data},
+        status=status.HTTP_200_OK)
