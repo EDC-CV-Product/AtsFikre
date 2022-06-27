@@ -2,30 +2,6 @@ from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 import logging
-class MyAuthBackend(object):
-    def authenticate(self, email, password):
-        try:
-            queryset = user.objects.get(email=email)
-            if queryset.check_password(password):
-                return queryset
-            else:
-                return None
-        except user.DoesNotExist:
-            logging.getLogger("error_logger").error("user with login %s does not exists " % login)
-            return None
-        except Exception as e:
-            logging.getLogger("error_logger").error(repr(e))
-            return None
-
-    def get_user(self, user_id):
-        try:
-            queryset = user.objects.get(sys_id=user_id)
-            if queryset.is_active:
-                return queryset
-            return None
-        except user.DoesNotExist:
-            logging.getLogger("error_logger").error("user with %(user_id)d not found")
-            return None
 
 class userManager(BaseUserManager):
     use_in_migrations = True
@@ -99,7 +75,7 @@ class Role(models.Model):
 class Skill_Set(models.Model):
     skill_set_id = models.AutoField(primary_key=True)
     skill = models.CharField(max_length=1000)
-    skill_level = models.CharField(max_length=30)
+   # skill_level = models.CharField(max_length=30)
     applicant_cv = models.ForeignKey(
         'applicant_cv',
          on_delete=models.CASCADE,
