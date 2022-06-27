@@ -55,9 +55,7 @@ olefile==0.46
 packaging==21.3
 pandas==1.4.1
 pathy==0.6.1
-pdfminer==20191125
 pdfminer.six==20191110
-pdfminer3==2018.12.3.0
 pefile==2021.9.3
 Pillow==9.0.1
 platformdirs==2.4.0
