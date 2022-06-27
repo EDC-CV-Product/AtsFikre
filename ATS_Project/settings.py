@@ -142,7 +142,7 @@ WSGI_APPLICATION = 'ATS_Project.wsgi.application'
 #Database
 #https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'atsdb',
@@ -153,9 +153,9 @@ DATABASES = {
 
     }
 }
+"""
 
-
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'de0ec6nf2cs7gb',
@@ -164,7 +164,7 @@ DATABASES = {
         'HOST': 'ec2-34-225-159-178.compute-1.amazonaws.com',
         'PORT': '5432',
           }
-}'''
+}
 
 
 # Password validation
