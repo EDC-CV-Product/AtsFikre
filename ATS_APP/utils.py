@@ -32,14 +32,14 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords 
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
-set(stopwords.words('english'))
 
-stop = stopwords.words('english')
 
-'''# sklearn
+stopwords = set(stopwords.words('english'))
+
+# sklearn
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from preprocessing import docx_processing  as doc, textract_processing as txt
+'''from preprocessing import docx_processing  as doc, textract_processing as txt
 from text_processing import tf_idf_cosine_similarity as tf_idf,doc2vec_comparison as d2v
 from text_processing import cv_cosine_similarity as cv'''
 
@@ -49,6 +49,42 @@ from dateutil.relativedelta import relativedelta
 # from ResumeRater.src.utils import loadDocumentIntoSpacy, countWords, loadDefaultNLP
 from typing import *
 
+
+    # skillset extractor
+
+skills = pd.read_csv('all_skills_clean.csv', )
+
+skill = skills['skills'].values
+
+type(skill)
+
+def extract_skills(input_text):
+    stop_words = set(nltk.corpus.stopwords.words('english'))
+    word_tokens = nltk.tokenize.word_tokenize(input_text)
+ 
+    # remove the stop words
+    filtered_tokens = [w for w in word_tokens if w not in stop_words]
+ 
+    # remove the punctuation
+    filtered_tokens = [w for w in filtered_tokens if w.isalpha()]
+ 
+    # generate bigrams and trigrams (such as artificial intelligence)
+    bigrams_trigrams = list(map(' '.join, nltk.everygrams(filtered_tokens, 2, 3)))
+ 
+    # we create a set to keep the results in.
+    found_skills = set()
+ 
+    # we search for each token in our skills database
+    for token in filtered_tokens:
+        if token.lower() in skill:
+            found_skills.add(token)
+ 
+    # we search for each bigram and trigram in our skills database
+    for ngram in bigrams_trigrams:
+        if ngram.lower() in skill:
+            found_skills.add(ngram)
+ 
+    return found_skills
 
 def handle_uploaded_file(file):
     Dir = 'C:/workspace/backend/media/'

@@ -147,7 +147,7 @@ WSGI_APPLICATION = 'ATS_Project.wsgi.application'
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'atsdb',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': '2142',
         'HOST': 'localhost',
         'PORT': 3306,
 
@@ -158,10 +158,10 @@ WSGI_APPLICATION = 'ATS_Project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'de0ec6nf2cs7gb',
-        'USER': 'eibfkgkzyhcqvd',
-        'PASSWORD': 'eb9a37dd4b5a9303300b578373bcb5eae8bde3215179c7c4d558873887b19a56',
-        'HOST': 'ec2-34-225-159-178.compute-1.amazonaws.com',
+        'NAME': 'd4ab44q102ndb7',
+        'USER': 'zocmftdqgyxyas',
+        'PASSWORD': 'd0cc3127e3378f8068890b3d547b16407a0ff10e11056889018e88cacc413f5c',
+        'HOST': 'ec2-44-195-162-77.compute-1.amazonaws.com',
         'PORT': '5432',
           }
 }

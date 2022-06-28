@@ -75,12 +75,12 @@ class Role(models.Model):
 class Skill_Set(models.Model):
     skill_set_id = models.AutoField(primary_key=True)
     skill = models.CharField(max_length=1000)
-   # skill_level = models.CharField(max_length=30)
-    applicant_cv = models.ForeignKey(
-        'applicant_cv',
-         on_delete=models.CASCADE,
+    #skill_level = models.CharField(max_length=30,default="")
+    applicant_cv= models.ForeignKey(
+        'user',
+         on_delete=models.CASCADE,default=""
          )
- 
+
 
 class job_platforms(models.Model):
     job_platform_id = models.AutoField(primary_key=True)

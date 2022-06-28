@@ -58,7 +58,7 @@ class RoleSerializer(serializers.ModelSerializer):
 class SkillsetSerializer(serializers.ModelSerializer):
     skill = serializers.CharField(label="skill:")
     #skill_level=serializers.CharField(label="skill_level:")
-    applicant_cv=serializers.CharField(label="applicant_cv:")
+    applicant=serializers.CharField(label="applicant:")
 
 
     class Meta: 
