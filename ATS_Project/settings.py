@@ -147,7 +147,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'atsdb',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': '2142',
         'HOST': 'localhost',
         'PORT': 3306,
 

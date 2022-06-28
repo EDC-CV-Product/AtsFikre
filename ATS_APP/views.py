@@ -1002,6 +1002,18 @@ def get_applicant_score(request):
                     candidate_evaluations.append(candidate)
                     candidate_ser = candidate_EvaluationSerializer(data=candidate)
                     # if candidate.is_valid():
+
+                    try:
+                        skills_extracted= extract_skills(resume_s)
+                        skill_set = Skill_Set()
+                        skill_set.skill = skills_extracted
+                        skill_set.applicant_cv = user_id
+                        skill_set.save()
+                        print('Saving success')
+                        continue
+                    except Exception as e:
+                        print(e)
+
                     try:
                         candidate.save()
                         print('Saving success')

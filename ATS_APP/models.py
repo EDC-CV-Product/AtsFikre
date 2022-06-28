@@ -99,9 +99,9 @@ class Role(models.Model):
 class Skill_Set(models.Model):
     skill_set_id = models.AutoField(primary_key=True)
     skill = models.CharField(max_length=1000)
-    skill_level = models.CharField(max_length=30)
+    # skill_level = models.CharField(max_length=30)
     applicant_cv = models.ForeignKey(
-        'applicant_cv',
+        'user',
          on_delete=models.CASCADE,
          )
  
