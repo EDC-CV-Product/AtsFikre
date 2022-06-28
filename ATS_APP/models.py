@@ -36,6 +36,7 @@ class user(AbstractBaseUser, PermissionsMixin):
 
     objects = userManager()
     #objects = models.Manager()
+   
 
     USERNAME_FIELD = 'email'
 

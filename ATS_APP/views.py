@@ -45,7 +45,7 @@ class UserApiView(APIView):
 
 # to Create Form and POST data to Table
     def post(self, request):
-        #request.data._mutable = True
+        request.data._mutable = True
         request.data['password'] = make_password(request.data['password'])
         #print(request.data['password'])
         serializer_obj = UserSerializer(data=request.data)
