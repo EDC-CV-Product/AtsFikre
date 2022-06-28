@@ -79,7 +79,8 @@ class Skill_Set(models.Model):
     applicant_cv= models.ForeignKey(
         'user',
          on_delete=models.CASCADE,default=""
-         )
+    )
+
 
 
 class job_platforms(models.Model):
